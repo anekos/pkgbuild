@@ -1,0 +1,5 @@
+*.ttf
+src/
+pkg/
+*.zst
+README.md

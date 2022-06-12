@@ -1,0 +1,33 @@
+# Maintainer: anekos
+
+pkgname=ttf-murecho-git
+pkgver=20220612
+pkgrel=1
+pkgdesc="Murecho is a low-stroke contrast, flat terminal Gothic style (“sans serif”) Japanese typeface designed for text settings in Japan."
+url="https://github.com/positype/-Project"
+license=("custom")
+arch=("any")
+source=(
+  "Murecho-Black.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-Black.ttf"
+  "Murecho-Bold.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-Bold.ttf"
+  "Murecho-ExtraBold.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-ExtraBold.ttf"
+  "Murecho-ExtraLight.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-ExtraLight.ttf"
+  "Murecho-Light.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-Light.ttf"
+  "Murecho-Medium.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-Medium.ttf"
+  "Murecho-Regular.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-Regular.ttf"
+  "Murecho-SemiBold.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-SemiBold.ttf"
+  "Murecho-Thin.ttf::https://github.com/positype/Murecho-Project/raw/master/fonts/ttf/Murecho-Thin.ttf"
+  "README.md::https://github.com/positype/Murecho-Project/raw/master/README.md"
+)
+sha256sums=("SKIP" "SKIP" "SKIP" "SKIP" "SKIP" "SKIP" "SKIP" "SKIP" "SKIP" "SKIP")
+package() {
+  cd ${srcdir}
+
+  install -dm755 "${pkgdir}/usr/share/fonts/TTF"
+  for _font in $(find ${srcdir} -name '*.ttf'); do
+      install -m644 "${_font}" "${pkgdir}/usr/share/fonts/TTF"
+  done
+
+  install -d "${pkgdir}/usr/share/licenses/${pkgname}"
+  install -m644 README.md "${pkgdir}/usr/share/licenses/${pkgname}"
+}
